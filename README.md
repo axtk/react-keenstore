@@ -55,3 +55,7 @@ createRoot(document.querySelector('#app')).render(
     </AppContext.Provider>
 );
 ```
+
+## See also
+
+- [*keenstore*](https://github.com/axtk/keenstore), the `Store` class without the React hook
