@@ -17,10 +17,8 @@
   },
   "keywords": [
     "store",
-    "events",
-    "emitter",
-    "subscribe",
-    "react"
+    "react",
+    "context"
   ],
   "author": "axtk",
   "license": "ISC",
