@@ -8,6 +8,8 @@ Dealing with shared state similarly to React's `useState()`.
 
 This example makes use of React Context (in a pretty typical way) to share a chunk of data across components. Wrapping the data into an instance of the `Store` class allows to make its updates occurring in one component (`<PlusButton/>`) immediately visible to other components subscribed to the store (`<Display/>`). With a store in the Context, there's no need to devise additional [value setters](https://react.dev/reference/react/useContext#updating-an-object-via-context) of the Context value.
 
+In this example, there's only one store, but there can be as many stores as needed. Splitting the app data into multiple stores will make the scopes of the stores clearer and it can help reduce irrelevant update notifications in the components requiring only a limited portion of the data.
+
 ```jsx
 import { createContext, useContext } from 'react';
 import { createRoot } from 'react-dom/client';
