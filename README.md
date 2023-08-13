@@ -40,7 +40,7 @@ const PlusButton = () => {
         // Updating the store state via `setState()` triggers updates
         // in all components subscribed to this store.
         setState(prevState => ({
-            counter: prevState.counter++
+            counter: prevState.counter + 1
         }));
     };
 
