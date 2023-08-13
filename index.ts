@@ -4,11 +4,11 @@ import type {Store} from 'keenstore';
 export * from 'keenstore';
 
 export type SetStoreState<T> = Store<T>['setState'];
-export type IsStoreResponsive<T> = (nextState: T, prevState: T) => boolean;
+export type IsResponsive<T> = (nextState: T, prevState: T) => boolean;
 
 export function useStore<T>(
     store: Store<T>,
-    responsive: boolean | IsStoreResponsive<T> = true,
+    responsive: boolean | IsResponsive<T> = true,
 ): [T, SetStoreState<T>] {
     let [, setRevision] = useState(-1);
 
