@@ -56,6 +56,8 @@ createRoot(document.querySelector('#app')).render(
 );
 ```
 
+([Live demo](https://codesandbox.io/s/react-keenstore-demo-npu6rb))
+
 ## See also
 
 - [*keenstore*](https://github.com/axtk/keenstore), the `Store` class without the React hook
