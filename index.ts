@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useState} from 'react';
+import {useContext, useEffect, useMemo, useState, Context} from 'react';
 import type {Store} from 'keenstore';
 
 export * from 'keenstore';
@@ -26,4 +26,11 @@ export function useStore<T>(
     }, [store, responsive]);
 
     return [state, setState];
+}
+
+export function useStoreContext<T>(
+    context: Context<Store<T>>,
+    responsive: boolean | IsResponsive<T>,
+): [T, SetStoreState<T>] {
+    return useStore(useContext(context), responsive);
 }
