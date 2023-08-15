@@ -1,5 +1,5 @@
 import {useContext, useEffect, useMemo, useState, Context} from 'react';
-import type {Store} from 'keenstore';
+import {Store} from 'keenstore';
 
 export * from 'keenstore';
 
@@ -10,6 +10,9 @@ export function useStore<T>(
     store: Store<T>,
     responsive: boolean | IsResponsive<T> = true,
 ): [T, SetStoreState<T>] {
+    if (!(store instanceof Store))
+        throw new Error('\'store\' is not an instance of Store');
+
     let [, setRevision] = useState(-1);
 
     let state = store.getState();
