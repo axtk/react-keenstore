@@ -10,7 +10,9 @@ Dealing with shared state similarly to React's `useState()`.
 npm i react-keenstore
 ```
 
-## Example
+## Usage
+
+### Example
 
 This example makes use of React Context (in a pretty typical way) to share a chunk of data across components. Wrapping the data into an instance of the `Store` class allows to make its updates occurring in one component (`<PlusButton/>`) immediately visible to other components subscribed to the store (`<Display/>`). With a store in the Context, there's **no need to devise additional [Context value setters](https://react.dev/reference/react/useContext#updating-an-object-via-context)**.
 
@@ -56,7 +58,11 @@ createRoot(document.querySelector('#app')).render(
 
 ([Live demo](https://codesandbox.io/s/react-keenstore-demo-npu6rb))
 
-In an application, there can be **as many stores as needed**, whether on a single Context or multiple Contexts. Splitting the app data into multiple stores can make the scopes of the stores clearer and it can help reduce irrelevant update notifications in the components requiring only a limited portion of the data.
+### Multiple stores
+
+An application can have **as many stores as needed**, whether on a single Context or multiple Contexts. Splitting the app data into multiple stores can make the scopes of the stores clearer and it can help reduce irrelevant update notifications in the components requiring only a limited portion of the data.
+
+### Single-store shorthand
 
 For cases where a Context value is only a single store, there's a **shorthand hook** (with the same optional second parameter as in `useStore()`):
 
@@ -67,7 +73,9 @@ For cases where a Context value is only a single store, there's a **shorthand ho
 + const [state, setState] = useStoreContext(AppContext);
 ```
 
-The similarity of the interfaces of `useStore()`, `useStoreContext()` and `useState()` allows to **easily switch from local state to shared state** without major code rewrites:
+### Switching from local state to shared state
+
+The similarity of the interfaces of `useStore()`, `useStoreContext()` and `useState()` allows to **easily switch from local state to shared state** without major code rewrites when it becomes necessary to make the state available to multiple components:
 
 ```diff
 + const StoreContext = createContext(new Store({ counter: 0 }));
