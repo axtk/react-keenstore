@@ -58,6 +58,28 @@ createRoot(document.querySelector('#app')).render(
 
 ([Live demo](https://codesandbox.io/s/react-keenstore-demo-npu6rb))
 
+The similarity of the interfaces of the `useStore()` hook and `useState()` allows to easily switch from local state to shared state without major code rewrites:
+
+```diff
+const CounterButton = () => {
+    // Local state:
+    // `state` is only available in the current component
+-   const [state, setState] = useState(data);
+
+    // Shared state:
+    // `state` is available inside and outside of the component
++   const [state, setState] = useStore(useContext(StoreContext));
+
+    const handleClick = () => {
+        setState(prevState => ({
+            counter: prevState.counter + 1
+        }));
+    };
+
+    return <button onClick={handleClick}>{state.counter}</button>;
+};
+```
+
 ## See also
 
 - [*keenstore*](https://github.com/axtk/keenstore), the `Store` class without the React hook
