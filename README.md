@@ -58,7 +58,7 @@ createRoot(document.querySelector('#app')).render(
 
 In an application, there can be **as many stores as needed**, whether on a single Context or multiple Contexts. Splitting the app data into multiple stores can make the scopes of the stores clearer and it can help reduce irrelevant update notifications in the components requiring only a limited portion of the data.
 
-For cases where a Context value is only a single store, there's a shortcut hook (with the same optional second parameter):
+For cases where a Context value is only a single store, there's a shorthand hook (with the same optional second parameter):
 
 ```diff
 - const store = useContext(AppContext);
