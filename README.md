@@ -62,9 +62,9 @@ createRoot(document.querySelector('#app')).render(
 
 An application can have **as many stores as needed**, whether on a single Context or multiple Contexts. Splitting the app data into multiple stores can make the scopes of the stores clearer and it can help reduce irrelevant update notifications in the components requiring only a limited portion of the data.
 
-### Single-store shorthand
+### Single-store shorthand hook
 
-For cases where a Context value is only a single store, there's a **shorthand hook** (with the same optional second parameter as in `useStore()`):
+For cases where a Context value is only a single store, there's a shorthand hook (with the same optional second parameter as in `useStore()`):
 
 ```diff
 - const store = useContext(AppContext);
@@ -73,9 +73,9 @@ For cases where a Context value is only a single store, there's a **shorthand ho
 + const [state, setState] = useStoreContext(AppContext);
 ```
 
-### Switching from local state to shared state
+### Painlessly switching from local state to shared state
 
-The similarity of the interfaces of `useStore()`, `useStoreContext()` and `useState()` allows to **easily switch from local state to shared state** without major code rewrites when it becomes necessary to make the state available to multiple components:
+The similarity of the interfaces of `useStore()`, `useStoreContext()` and `useState()` allows to easily switch from local state to shared state without major code rewrites when it becomes necessary to make the state available to multiple components:
 
 ```diff
 + const StoreContext = createContext(new Store({ counter: 0 }));
