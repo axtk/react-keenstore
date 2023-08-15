@@ -12,7 +12,7 @@ npm i react-keenstore
 
 ## Example
 
-This example makes use of React Context (in a pretty typical way) to share a chunk of data across components. Wrapping the data into an instance of the `Store` class allows to make its updates occurring in one component (`<PlusButton/>`) immediately visible to other components subscribed to the store (`<Display/>`). With a store in the Context, there's no need to devise additional [value setters](https://react.dev/reference/react/useContext#updating-an-object-via-context) of the Context value.
+This example makes use of React Context (in a pretty typical way) to share a chunk of data across components. Wrapping the data into an instance of the `Store` class allows to make its updates occurring in one component (`<PlusButton/>`) immediately visible to other components subscribed to the store (`<Display/>`). With a store in the Context, there's **no need to devise additional [Context value setters](https://react.dev/reference/react/useContext#updating-an-object-via-context)**.
 
 ```jsx
 import { createContext, useContext } from 'react';
@@ -56,7 +56,7 @@ createRoot(document.querySelector('#app')).render(
 
 ([Live demo](https://codesandbox.io/s/react-keenstore-demo-npu6rb))
 
-In an application, there can be as many stores as needed, whether on a single Context or multiple Contexts. Splitting the app data into multiple stores can make the scopes of the stores clearer and it can help reduce irrelevant update notifications in the components requiring only a limited portion of the data.
+In an application, there can be **as many stores as needed**, whether on a single Context or multiple Contexts. Splitting the app data into multiple stores can make the scopes of the stores clearer and it can help reduce irrelevant update notifications in the components requiring only a limited portion of the data.
 
 For cases where a Context value is only a single store, there's a shortcut hook (with the same optional second parameter):
 
@@ -67,7 +67,7 @@ For cases where a Context value is only a single store, there's a shortcut hook 
 + const [state, setState] = useStoreContext(AppContext);
 ```
 
-The similarity of the interfaces of `useStore()`, `useStoreContext()` and `useState()` allows to easily switch from local state to shared state without major code rewrites:
+The similarity of the interfaces of `useStore()`, `useStoreContext()` and `useState()` allows to **easily switch from local state to shared state** without major code rewrites:
 
 ```diff
 const CounterButton = () => {
