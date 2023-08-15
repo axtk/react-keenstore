@@ -78,7 +78,7 @@ For cases where a Context value is only a single store, there's a shorthand hook
 The similarity of the interfaces of `useStore()`, `useStoreContext()` and `useState()` allows to easily switch from local state to shared state without major code rewrites when it becomes necessary to make the state available to multiple components:
 
 ```diff
-+ const StoreContext = createContext(new Store({ counter: 0 }));
++ const AppContext = createContext(new Store({ counter: 0 }));
 
 const CounterButton = () => {
     // Local state:
@@ -87,7 +87,7 @@ const CounterButton = () => {
 
     // Shared state:
     // `state` is available inside and outside of the component
-+   const [state, setState] = useStoreContext(StoreContext);
++   const [state, setState] = useStoreContext(AppContext);
 
     const handleClick = () => {
         setState(prevState => ({
