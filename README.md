@@ -99,6 +99,10 @@ const CounterButton = () => {
 };
 ```
 
+### Adding *immer*
+
+*immer* is not part of this package, but it can be used with `useStore()` and `useStoreContext()` just the same way as it [works](https://immerjs.github.io/immer/example-setstate#usestate--immer) with `useState()`. (See [live demo](https://codesandbox.io/s/react-keenstore-demo-with-immer-q9jykm?file=/src/PlusButton.jsx).)
+
 ## See also
 
 - [*keenstore*](https://github.com/axtk/keenstore), the `Store` class without the React hook
