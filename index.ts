@@ -28,6 +28,11 @@ export function useStore<T>(
     return [state, setState];
 }
 
+/**
+ * Accepts a React Context whose value is a single store as the first
+ * parameter, with the other parameter and return value being the same
+ * as with the `useStore()` hook.
+ */
 export function useStoreContext<T>(
     context: Context<Store<T>>,
     responsive: boolean | IsResponsive<T>,
