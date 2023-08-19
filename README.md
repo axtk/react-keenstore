@@ -114,6 +114,26 @@ const CounterButton = () => {
 
 As seen from this example, we only have to switch the source of the state to a Context, with the rest of the code (reading and updating the state) remaining the same.
 
+### Direct subscription to store updates
+
+For some purposes (like logging or debugging the data flow), it might be helpful to directly subscribe to state updates via the store's `onUpdate()` method:
+
+```ts
+const App = () => {
+    const store = useContext(AppContext);
+
+    useEffect(() => {
+        // `onUpdate()` returns an unsubscription function which
+        // works as a cleanup function in the effect.
+        return store.onUpdate((nextState, prevState) => {
+            console.log({ nextState, prevState });
+        });
+    }, [store]);
+
+    // ...
+};
+```
+
 ### Adding *immer*
 
 *immer* is not part of this package, but it can be used with `useStore()` and `useStoreContext()` just the same way as it [works](https://immerjs.github.io/immer/example-setstate#usestate--immer) with `useState()`. (See [live demo](https://codesandbox.io/s/react-keenstore-demo-with-immer-q9jykm?file=/src/PlusButton.jsx).)
