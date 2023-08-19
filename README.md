@@ -62,6 +62,19 @@ createRoot(document.querySelector('#app')).render(
 
 An application can have **as many stores as needed**, whether on a single Context or multiple Contexts. Splitting the app data into multiple stores can make the scopes of the stores clearer and it can help reduce irrelevant update notifications in the components requiring only a limited portion of the data.
 
+```ts
+const AppContext = createContext({
+    users: new Store(/* ... */),
+    services: new Store(/* ... */)
+});
+
+const UserInfo = ({ userId }) => {
+    const [users, setUsers] = useStore(useContext(AppContext).users);
+
+    // ...
+};
+```
+
 ### Shorthand hook
 
 A Context value can contain any sort of data alongside stores. But for the common case where a Context value contains only a store, a shorthand hook can be used (with the same optional second parameter as in `useStore()`):
