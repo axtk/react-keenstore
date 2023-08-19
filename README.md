@@ -136,7 +136,7 @@ const App = () => {
 
 ### Adding *immer*
 
-*immer* is not part of this package, but it can be used with `useStore()` and `useStoreContext()` just the same way as it [works](https://immerjs.github.io/immer/example-setstate#usestate--immer) with `useState()`. (See [live demo](https://codesandbox.io/s/react-keenstore-demo-with-immer-q9jykm?file=/src/PlusButton.jsx).)
+*immer* is not part of this package, but it can be used with `useStore()` and `useStoreContext()` just the same way as [with `useState()`](https://immerjs.github.io/immer/example-setstate#usestate--immer). (See [live demo](https://codesandbox.io/s/react-keenstore-demo-with-immer-q9jykm?file=/src/PlusButton.jsx).)
 
 ## See also
 
