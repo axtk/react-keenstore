@@ -12,7 +12,7 @@ npm i react-keenstore
 
 ## Usage example
 
-This package exports the `Store` class and the `useStore()` React hook. They are sufficient to setup shared state without bulky boilerplate.
+This package exports the `Store` class and the `useStore()` React hook. They are sufficient to set up shared state without bulky boilerplate.
 
 The example below makes use of React Context (in a pretty typical way) to share a chunk of data across components. Wrapping the data into an instance of the `Store` class allows to make its updates occurring in one component (`<PlusButton/>`) immediately visible to other components subscribed to the store via the `useStore()` hook (`<Display/>`).
 
