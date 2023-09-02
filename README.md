@@ -73,20 +73,9 @@ const UserInfo = ({ userId }) => {
 };
 ```
 
-## Shorthand hook
-
-A Context value can contain any sort of data alongside stores. But for the common case where a Context value contains only a store, a shorthand hook can be used (with the same optional second parameter as in `useStore()`):
-
-```diff
-- const store = useContext(AppContext);
-- const [state, setState] = useStore(store);
-
-+ const [state, setState] = useStoreContext(AppContext);
-```
-
 ## Painless transition from local state to shared state
 
-The similarity of the interfaces of `useStore()`, `useStoreContext()` and `useState()` allows to easily switch from local state to shared state without major code rewrites when it becomes necessary to make the state available to multiple components:
+The similarity of the interfaces of `useStore()` and `useState()` allows to easily switch from local state to shared state without major code rewrites when it becomes necessary to make the state available to multiple components:
 
 ```diff
 + const AppContext = createContext(new Store({ counter: 0 }));
@@ -98,7 +87,7 @@ const CounterButton = () => {
 
     // Shared state:
     // `state` is available inside and outside of the component
-+   const [state, setState] = useStoreContext(AppContext);
++   const [state, setState] = useStore(useContext(AppContext));
 
     const handleClick = () => {
         setState(prevState => ({
@@ -171,7 +160,7 @@ const App = () => {
 
 ## Adding *immer*
 
-*immer* is not part of this package, but it can be used with `useStore()` and `useStoreContext()` just the same way as [with `useState()`](https://immerjs.github.io/immer/example-setstate#usestate--immer). (See [live demo](https://codesandbox.io/s/react-keenstore-demo-with-immer-q9jykm?file=/src/PlusButton.jsx).)
+*immer* is not part of this package, but it can be used with `useStore()` just the same way as [with `useState()`](https://immerjs.github.io/immer/example-setstate#usestate--immer). (See [live demo](https://codesandbox.io/s/react-keenstore-demo-with-immer-q9jykm?file=/src/PlusButton.jsx).)
 
 ## See also
 
