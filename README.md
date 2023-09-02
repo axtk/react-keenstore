@@ -112,6 +112,43 @@ const CounterButton = () => {
 
 As seen from this example, we only have to switch the source of the state to a Context, with the rest of the code (reading and updating the state) remaining the same.
 
+## Persistent local state
+
+A store can also act as:
+
+- local state persistent across remounts, and
+- unmount-safe storage for asynchronously fetched data.
+
+Maintaining local state of a component with the React's `useState()` hook is commonplace and works fine for many cases, but it has its downsides:
+
+- the updated state from `useState()` is lost whenever the component unmounts, and
+- setting the state in an asynchronous callback after the component gets unmounted causes an error and requires extra handling.
+
+Both of these issues can be addressed by using a store declared outside of the component instead of `useState()`. Such a store doesn't have to be shared with other components (although it's also possible).
+
+```diff
++ const itemStore = new Store();
+
+const List = () => {
+-   const [items, setItems] = useState();
++   const [items, setItems] = useStore(itemStore);
+
+    useEffect(() => {
+        if (items !== undefined)
+            return;
+
+        fetch('/items')
+            .then(res => res.json())
+            .then(items => setItems(items));
+        // If the request completes after the component has unmounted
+        // the fetched data will be safely put into `itemStore` and
+        // this data will be reused when the component remounts.
+    }, [items]);
+
+    // Rendering
+};
+```
+
 ## Direct subscription to store updates
 
 For some purposes (like logging or debugging the data flow), it might be helpful to directly subscribe to state updates via the store's `onUpdate()` method:
