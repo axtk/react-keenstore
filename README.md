@@ -105,6 +105,26 @@ const CounterButton = () => {
 
 As seen from this example, we only have to switch the source of the state to a Context, with the rest of the code (reading and updating the state) remaining the same.
 
+## Direct subscription to store updates
+
+For some purposes (like logging or debugging the data flow), it might be helpful to directly subscribe to state updates via the store's `onUpdate()` method:
+
+```js
+const App = () => {
+    const store = useContext(AppContext);
+
+    useEffect(() => {
+        // `onUpdate()` returns an unsubscription function which
+        // works as a cleanup function in the effect.
+        return store.onUpdate((nextState, prevState) => {
+            console.log({ nextState, prevState });
+        });
+    }, [store]);
+
+    // ...
+};
+```
+
 ## Persistent local state
 
 A store can also act as:
@@ -142,21 +162,30 @@ const List = () => {
 };
 ```
 
-## Direct subscription to store updates
+### Connecting a store to external storage
 
-For some purposes (like logging or debugging the data flow), it might be helpful to directly subscribe to state updates via the store's `onUpdate()` method:
+`itemStore` from the example above can be further upgraded to make the component state persistent across page reloads without affecting the component's internals.
 
 ```js
-const App = () => {
-    const store = useContext(AppContext);
+let initialState;
 
-    useEffect(() => {
-        // `onUpdate()` returns an unsubscription function which
-        // works as a cleanup function in the effect.
-        return store.onUpdate((nextState, prevState) => {
-            console.log({ nextState, prevState });
-        });
-    }, [store]);
+try {
+    initialState = JSON.parse(localStorage.getItem('list'));
+}
+catch {}
+
+export const itemStore = new Store(initialState);
+
+itemStore.onUpdate(nextState => {
+    localStorage.setItem('list', JSON.stringify(nextState));
+});
+```
+
+```js
+import { itemStore } from './itemStore';
+
+export const List = () => {
+    const [items, setItems] = useStore(itemStore);
 
     // ...
 };
