@@ -12,9 +12,9 @@ npm i react-keenstore
 
 ## Usage example
 
-This package exports the `Store` class and the `useStore()` React hook. They are sufficient to set up shared state without bulky boilerplate.
+This package exports the `Store` class and the `useStore()` React hook that are sufficient to set up shared state without bulky boilerplate.
 
-The example below makes use of React Context (in a pretty typical way) to share a chunk of data across components. Wrapping the data into an instance of the `Store` class allows to make its updates occurring in one component (`<PlusButton/>`) immediately visible to other components subscribed to the store via the `useStore()` hook (`<Display/>`).
+The example below makes use of React Context to share a chunk of data across components. Wrapping the data into an instance of the `Store` class allows to make its updates occurring in one component (`<PlusButton/>`) immediately visible to other components subscribed to the store via the `useStore()` hook (`<Display/>`).
 
 With a store in the Context, there's **no need to devise additional [Context value setters](https://react.dev/reference/react/useContext#updating-an-object-via-context)** usually required to update a Context value without stores.
 
@@ -135,7 +135,7 @@ A store can also act as:
 Maintaining local state of a component with the React's `useState()` hook is commonplace and works fine for many cases, but it has its downsides:
 
 - the updated state from `useState()` is lost whenever the component unmounts, and
-- setting the state in an asynchronous callback after the component gets unmounted causes an error and requires extra handling.
+- setting the state in an asynchronous callback after the component gets unmounted causes an error that requires extra handling.
 
 Both of these issues can be addressed by using a store declared outside of the component instead of `useState()`. Such a store doesn't have to be shared with other components (although it's also possible).
 
@@ -153,14 +153,13 @@ const List = () => {
         fetch('/items')
             .then(res => res.json())
             .then(items => setItems(items));
-        // If the request completes after the component has unmounted
-        // the fetched data will be safely put into `itemStore` and
-        // this data will be reused when the component remounts.
     }, [items]);
 
     // Rendering
 };
 ```
+
+In the example above, if the request completes after the component has unmounted the fetched data will be safely put into `itemStore` and this data will be reused when the component remounts without fetching it again.
 
 ### Connecting a store to external storage
 
