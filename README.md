@@ -190,7 +190,7 @@ export const List = () => {
 
 ## Adding *immer*
 
-*immer* is not part of this package, but it can be used with `useStore()` just the same way as [with `useState()`](https://immerjs.github.io/immer/example-setstate#usestate--immer). (See [live demo](https://codesandbox.io/s/react-keenstore-demo-with-immer-q9jykm?file=/src/PlusButton.jsx).)
+*immer* is not part of this package, but it can be used with `useStore()` just the same way as [with `useState()`](https://immerjs.github.io/immer/example-setstate#usestate--immer) to facilitate deeply nested data changes. (See [live demo](https://codesandbox.io/s/react-keenstore-demo-with-immer-q9jykm?file=/src/PlusButton.jsx).)
 
 ## See also
 
