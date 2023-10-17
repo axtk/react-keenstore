@@ -14,9 +14,9 @@ npm i react-keenstore
 
 This package exports the `Store` class and the `useStore()` React hook that are sufficient to set up shared state without bulky boilerplate.
 
-The example below makes use of React Context to share a chunk of data across components. Wrapping the data into an instance of the `Store` class allows to make its updates occurring in one component (`<PlusButton/>`) immediately visible to other components subscribed to the store via the `useStore()` hook (`<Display/>`).
+In the example below, the data shared across components by means of React Context is wrapped into an instance of the `Store` class. It allows to make data updates occurring in one component (`<PlusButton/>`) immediately visible to other components subscribed to the store via the `useStore()` hook (`<Display/>`).
 
-With a store in the Context, there's **no need to devise additional [Context value setters](https://react.dev/reference/react/useContext#updating-an-object-via-context)** usually required to update a Context value without stores.
+While a plain object as a Context value requires devising additional [value setters](https://react.dev/reference/react/useContext#updating-an-object-via-context) to update the shared data, the store exposes a method to update the data out of the box and triggers a re-render only in the components subscribed to this store.
 
 ```jsx
 import { createContext, useContext } from 'react';
@@ -62,7 +62,7 @@ createRoot(document.querySelector('#app')).render(
 
 ## Multiple stores
 
-An application can have **as many stores as needed**, whether on a single Context or multiple Contexts. Splitting the app data into multiple stores can make the scopes of the stores clearer and it can help reduce irrelevant update notifications in the components requiring only a limited portion of the data.
+An application can have as many stores as needed, whether on a single Context or multiple Contexts. Splitting the app data into multiple stores can make the scopes of the stores clearer and it can help reduce irrelevant update notifications in the components requiring only a limited portion of the data.
 
 ```js
 const AppContext = createContext({
