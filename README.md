@@ -127,17 +127,15 @@ const App = () => {
 
 ## Persistent local state
 
-A store can also act as:
-
-- local state persistent across remounts, and
-- unmount-safe storage for asynchronously fetched data.
-
-Maintaining local state of a component with the React's `useState()` hook is commonplace and works fine for many cases, but it has its downsides:
+Maintaining local state of a component with the React's `useState()` hook is commonplace and works fine for many cases, but it has its downsides in the popular scenarios:
 
 - the updated state from `useState()` is lost whenever the component unmounts, and
 - setting the state in an asynchronous callback after the component gets unmounted causes an error that requires extra handling.
 
-Both of these issues can be addressed by using a store declared outside of the component instead of `useState()`. Such a store doesn't have to be shared with other components (although it's also possible).
+Both of these issues can be addressed by using a store created outside of the component instead of `useState()`. Such a store doesn't have to be shared with other components (although it's also possible) and it will act as:
+
+- local state persistent across remounts, and
+- unmount-safe storage for asynchronously fetched data.
 
 ```diff
 + const itemStore = new Store();
