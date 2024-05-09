@@ -19,30 +19,30 @@ In the example below, the data shared across components by means of React Contex
 While a plain object as a Context value requires devising additional [value setters](https://react.dev/reference/react/useContext#updating-an-object-via-context) to update the shared data, the store exposes a method to update the data out of the box and triggers a re-render only in the components subscribed to this store.
 
 ```jsx
-import { createContext, useContext } from 'react';
-import { createRoot } from 'react-dom/client';
-import { Store, useStore } from 'react-keenstore';
+import {createContext, useContext} from 'react';
+import {createRoot} from 'react-dom/client';
+import {Store, useStore} from 'react-keenstore';
 
-const AppContext = createContext(new Store({ counter: 0 }));
+const AppContext = createContext(new Store({counter: 0}));
 
 const Display = () => {
-    const store = useContext(AppContext);
-    const [state] = useStore(store);
+    let store = useContext(AppContext);
+    let [state] = useStore(store);
 
     return <span>{state.counter}</span>;
 };
 
 const PlusButton = () => {
-    const store = useContext(AppContext);
+    let store = useContext(AppContext);
     // We're not using the store state value here, so the subscription
     // to its updates is not required, hence the `false` parameter.
-    const [, setState] = useStore(store, false);
+    let [, setState] = useStore(store, false);
 
-    const handleClick = () => {
+    let handleClick = () => {
         // Updating the store state via `setState()` triggers updates
         // in all components subscribed to this store.
         setState(prevState => ({
-            counter: prevState.counter + 1
+            counter: prevState.counter + 1,
         }));
     };
 
@@ -52,9 +52,9 @@ const PlusButton = () => {
 const App = () => <div><PlusButton/> <Display/></div>;
 
 createRoot(document.querySelector('#app')).render(
-    <AppContext.Provider value={new Store({ counter: 42 })}>
+    <AppContext.Provider value={new Store({counter: 42})}>
         <App/>
-    </AppContext.Provider>
+    </AppContext.Provider>,
 );
 ```
 
@@ -67,11 +67,11 @@ An application can have as many stores as needed, whether on a single Context or
 ```js
 const AppContext = createContext({
     users: new Store(/* ... */),
-    services: new Store(/* ... */)
+    services: new Store(/* ... */),
 });
 
-const UserInfo = ({ userId }) => {
-    const [users, setUsers] = useStore(useContext(AppContext).users);
+const UserInfo = ({userId}) => {
+    let [users, setUsers] = useStore(useContext(AppContext).users);
 
     // ...
 };
@@ -111,13 +111,13 @@ For some purposes (like logging or debugging the data flow), it might be helpful
 
 ```js
 const App = () => {
-    const store = useContext(AppContext);
+    let store = useContext(AppContext);
 
     useEffect(() => {
         // `onUpdate()` returns an unsubscription function which
         // works as a cleanup function in the effect.
         return store.onUpdate((nextState, prevState) => {
-            console.log({ nextState, prevState });
+            console.log({nextState, prevState});
         });
     }, [store]);
 
@@ -179,10 +179,10 @@ itemStore.onUpdate(nextState => {
 ```
 
 ```js
-import { itemStore } from './itemStore';
+import {itemStore} from './itemStore';
 
 export const List = () => {
-    const [items, setItems] = useStore(itemStore);
+    let [items, setItems] = useStore(itemStore);
 
     // ...
 };
