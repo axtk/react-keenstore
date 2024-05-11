@@ -82,12 +82,12 @@ const UserInfo = ({userId}) => {
 The similarity of the interfaces of `useStore()` and `useState()` allows to easily switch from local state to shared state without major code rewrites when it becomes necessary to make the state available to multiple components:
 
 ```diff
-+ const AppContext = createContext(new Store({ counter: 0 }));
++ const AppContext = createContext(new Store({counter: 0}));
 
 const CounterButton = () => {
     // Local state:
     // `state` is only available in the current component
--   const [state, setState] = useState({ counter: 0 });
+-   const [state, setState] = useState({counter: 0});
 
     // Shared state:
     // `state` is available inside and outside of the component
