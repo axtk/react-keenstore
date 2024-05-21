@@ -18,8 +18,12 @@
   },
   "keywords": [
     "store",
+    "shared state",
+    "state management",
     "react",
-    "context"
+    "react store",
+    "react state",
+    "react context"
   ],
   "author": "axtk",
   "license": "ISC",
