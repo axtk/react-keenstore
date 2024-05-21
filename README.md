@@ -20,7 +20,6 @@ While a plain object as a Context value requires devising additional [value sett
 
 ```jsx
 import {createContext, useContext} from 'react';
-import {createRoot} from 'react-dom/client';
 import {Store, useStore} from 'react-keenstore';
 
 const AppContext = createContext(new Store({counter: 0}));
@@ -49,7 +48,13 @@ const PlusButton = () => {
     return <button onClick={handleClick}>+</button>;
 };
 
-const App = () => <div><PlusButton/> <Display/></div>;
+export const App = () => <div><PlusButton/> <Display/></div>;
+```
+
+```jsx
+import {createRoot} from 'react-dom/client';
+import {Store} from 'react-keenstore';
+import {App} from './App';
 
 createRoot(document.querySelector('#app')).render(
     <AppContext.Provider value={new Store({counter: 42})}>
